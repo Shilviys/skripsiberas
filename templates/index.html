@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Judul Halaman -->
+	<title>YOLO-v5</title>
+	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<!-- Icon -->
+	<link rel="shortcut icon" href="{{ url_for('static', filename='#') }}">
+	
+	<!-- CSS -->
+	<link rel="stylesheet" href={{ url_for('static', filename='/css/bootstrap.min.css') }} type="text/css">
+	<link rel="stylesheet" href={{ url_for('static', filename='/css/client_side.css') }}  type="text/css">
+	
+	<!-- JavaScript -->
+	<script src={{ url_for('static', filename='/js/jquery_3.6.0.min.js') }} ></script>
+	<script src={{ url_for('static', filename='/js/bootstrap_3.4.1.min.js') }} ></script>
+</head>
+
+<body id="halamanku" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+	<!-- Navigation Bar -->
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			
+			<!-- Logo -->
+			<div class="navbar-header">
+				<img src={{ url_for('static', filename='/images/logo.jpg') }} alt="Logo" 
+				width="50" height="50" align="left">
+				<a class="navbar-brand" href="#halamanku">&#160;Sistem Deteksi Beras & Objek Asing</a>
+			</div>
+			
+			<!-- Daftar Halaman -->
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#informasi">Informasi</a></li>
+					<li><a href="#aplikasi">Hasil Runs YOLO</a></li>
+					<li><a href="#anggotaKelompok">Peneliti</a></li>
+					<li><a href="{{url_for('objectDetection')}}">Object Detection</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Bagian Halaman (Informasi) -->
+	<div id="informasi" class="container-fluid">
+		<br>
+		<div class="row">
+			<div class="col-sm-6">
+				<h2>Sistem Identifikasi Deteksi Beras dan Objek Asing Menggunakan Metode CNN (Convolutional Neural Network)</h2>
+				<h4>Penjelasan Hasil Deteksi</h4>
+				<p style="text-align: justify;text-justify: inter-word;">
+					Penelitian ini dilakukan dalam epochs 30, batch size 10, dan images size 640 piksel. Deteksi dilakukan pada 10 karung jadi 10 sampel yang terdeteksi, dengan menggunakan total dataset sebanyak 1000 citra yang dibagi menjadi 3 yaitu 500 citra (training), 250 citra (validation) dan 250 citra (testing). Kemudian memiliki 5 kategori pendeteksian objek yaitu butir beras, butir batu, gabah, kutu hewan, butir merah/hitam. Kinerja terbaik YOLO-v5 adalah memdapatkan hasil sebesar 92% dengan nilai threshold 0.1, menghasilkan skor F1-Confidence Curve 0.822, Precision-Confidence Curve 0.922, Precision-Recall Curve 0.995 mAP @0.5, Recall Confidence Curve 1.00 dan Confusion Matrix 1.00
+				</p>
+				<!-- Tombol Mulai -->
+				<!-- <nav id="navgo" class="navbar" style="background-color:#ffffff;z-index: 0;">
+					<ul class="nav nav-pills">
+						<li class="nav-item">
+							<a class="btn btn-default btn-lg" href="#aplikasi" style="background-color:#2899e5">Mulai</a>
+						</li>
+					</ul>
+				</nav> -->
+			</div>
+			<div class="col-sm-6">
+				<br>
+				<!-- Gambar Deskripsi Aplikasi -->
+				<div align="center">
+					<img src={{ url_for('static', filename='/images/beras.jpg') }} height="300" ></img>
+				</div>
+			</div>
+		</div>
+		<br>
+	</div>
+	<!-- <div class="row slideanim">
+			<div class="col-sm-6">
+				<h3 style="margin-left: 50px;">Hasil Runs Deteksi YOLO-v5 </h3>
+					<form style="margin-left: 50px;">
+						<img src={{ url_for('static', filename='/images/confusion_matrix.png') }} width="300" alt="confusion-matrix"></img>
+						<p>Confusion Matrix</p>
+						<img src={{ url_for('static', filename='/images/F1_curve.png') }} width="300" alt="f1-curve"></img>
+						<p>F1 Curve</p>
+					</form>
+			</div>
+	</div> -->
+	<!-- Bagian Halaman (Aplikasi)-->
+	<div id="aplikasi" class="container-fluid text-center">
+		<h3>Hasil Runs Deteksi YOLO-v5</h3>
+		<br>
+		<div class="row slideanim">
+			<div class="col-sm-4">
+				<span class="#"></span>
+				<img src={{ url_for('static', filename='/images/confusion_matrix.png') }} width="300"></img>
+				<p>Confusion Matrix</p>
+			</div>
+			<div class="col-sm-4">
+				<span class="#"></span>
+				<img src={{ url_for('static', filename='/images/F1_curve.png') }} width="300"></img>
+				<p>F1 Curve</p>
+			</div>
+			<div class="col-sm-4">
+				<span class="#"></span>
+				<img src={{ url_for('static', filename='/images/labels.jpg') }} width="300"></img>
+				<p>Labels</p>
+			</div>
+			<div class="col-sm-4">
+				<span class="#"></span>
+				<img src={{ url_for('static', filename='/images/labels_correlogram.jpg') }} width="300"></img>
+				<p>Labels Correlogram</p>
+			</div>
+			<div class="col-sm-4">
+				<span class="#"></span>
+				<img src={{ url_for('static', filename='/images/P_curve.png') }} width="300"></img>
+				<p>Precision Curve</p>
+			</div>
+			<div class="col-sm-4">
+				<span class="#"></span>
+				<img src={{ url_for('static', filename='/images/PR_curve.png') }} width="300"></img>
+				<p>Precision Recall Curve</p>
+			</div>
+			<div class="col-sm-4">
+				<span class="#"></span>
+				<img src={{ url_for('static', filename='/images/R_curve.png') }} width="300"></img>
+				<p>Recall Curve</p>
+			</div>
+			<div class="col-sm-4">
+				<span class="#"></span>
+				<img src={{ url_for('static', filename='/images/results.png') }} width="300"></img>
+				<p>Result</p>
+			</div>
+	    </div>
+	</div>
+</div>
+		</div>
+		</br>
+	</div>
+
+
+	<!-- Bagian Halaman (Anggota Kelompok) -->
+	<div id="anggotaKelompok" class="container-fluid text-center">
+		<br>
+		<h2>PENELITI</h2>
+		<h4>DEPLOYMENT SYSTEM</h4>
+		<br>
+		<span class="glyphicon glyphicon-user logo-small"></span>
+				<h4>SHILVI YANTI SAFITRI</h4>
+				<p>2018230050</p>
+				<p>TEKNOLOGI INFORMASI</p>
+				<p>UNIVERSITAS DARMA PERSADA</p>
+		<div class="row slideanim">
+		<div class="col-sm-6">
+			</div>
+		<!-- <div class="row slideanim">
+			<div class="col-sm-4">
+				<span class="glyphicon glyphicon-user logo-small"></span>
+				<h4>SHILVI YANTI SAFITRI</h4>
+				<p>2018230050</p>
+				<p>TEKNOLOGI INFORMASI</p>
+				<p>UNIVERSITAS DARMA PERSADA</p>
+			</div> -->
+	</div>
+
+	<!-- Footer -->
+	<footer class="container-fluid text-center">
+		<a href="#halamanku" title="To Top">
+			<span class="glyphicon glyphicon-chevron-up"></span>
+		</a>
+		<p>Shilvi Yanti Safitri (2018230050)<br> <a href="#">Teknologi Informasi, Universitas Darma Persada</a></p>
+	</footer>
+
+	<!-- JavaScript untuk Animasi Scroll dan Prediksi Model -->
+	<script  src={{ url_for('static', filename='/js/client_side.js') }}></script>
+
+</body>
+</html>
